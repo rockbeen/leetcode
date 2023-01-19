@@ -12,31 +12,28 @@
  */
 class Solution {
 public:
-    ListNode* deleteDuplicates(ListNode* head) {
+   ListNode* deleteDuplicates(ListNode* head) {
             if(head != nullptr) 
-                deleteDuplicatesVal(head);
+                deleteDuplicatesRecursion(head);
             return head;
 
         }
-    void deleteDuplicatesVal(ListNode* head) {
+    void deleteDuplicatesRecursion(ListNode* head) {
             if (head == nullptr) return;
-            if(head->next != nullptr && head->val == head->next->val) {
-                 head->next = head->next->next;
-                 deleteDuplicatesVal(head);
-                // if(head->next->next != nullptr) {
-                //     head->next = head->next->next;
-                //     deleteDuplicatesVal(head->next);
-                // } else {
-                //     head = nullptr;
-                //     return;
-                // }
+        
+            if (head->next != nullptr && head->val == head->next->val) {
+                ListNode* nodedelete = head->next;
+                head->next = head->next->next;
+                delete nodedelete;
+                
+                deleteDuplicatesRecursion(head);
+                
             } else if(head->next != nullptr)
-                deleteDuplicatesVal(head->next);
-            // else if(head->val == head->next->val)
-            //     head->next = nullptr;  
+                deleteDuplicatesRecursion(head->next);
         }
 };
 
+ // 2 (medium)
 /**
  * Definition for singly-linked list->
  * struct ListNode {
@@ -47,7 +44,6 @@ public:
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
- // 2 (medium)
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
