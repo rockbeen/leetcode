@@ -86,3 +86,29 @@ public:
         return lResult;
     }
 };
+// 3(easy)
+class Solution {
+public:
+    bool isValid(string str) {
+        stack<char> Stack;
+        for(size_t i = 0; i < str.length(); ++i) {
+            if (str[i] == '{' || str[i] == '(' || str[i] == '[') {
+                Stack.push(str[i]);
+            }
+            else {
+                if(Stack.empty() == true) return false;
+                if ((str[i] == '}' && Stack.top() == '{') || (str[i] == ')' && Stack.top() == '(')  || (str[i] == ']' && Stack.top() == '[')) {
+                    Stack.pop();
+
+                } else {
+                   return false;
+                }
+            }
+        }
+        if(Stack.empty() == true) return true;
+        else return false;
+
+    }
+
+
+};
