@@ -115,18 +115,21 @@ public:
 // 4(easy)
 class Solution {
 public:
-    bool isPalindrome(string s) {
+    bool isPalindrome(const string s) {
         string str;
         for(int i=0;i<s.size();i++){
             if(isalnum(s[i])) str.push_back(tolower(s[i]));
         }
-        int l =0;
-        int r = str.length() -1;
-        while(l < r){
-            if(str[l] != str[r]) return false;
-            l++;
-            r--;
+        int i =0;
+        int j = str.length() -1;
+        while(i < j){
+            if(str[i] != str[j]) {
+                return false;
+            }
+            i++;
+            j--;
         }
         return true;
     }
 };
+
